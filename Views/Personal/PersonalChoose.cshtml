@@ -1,0 +1,133 @@
+﻿@{
+    ViewData["Title"] = "Personal Choose";
+    var learnerId = ViewBag.LearnerID as int?;
+    var message = ViewBag.Message as string;
+    var messageType = ViewBag.MessageType as string;
+    var noti = ViewBag.noti as string;
+}
+
+<h1>Personal Choose</h1>
+
+@if (learnerId.HasValue)
+{
+    <p><strong>Learner ID:</strong> @learnerId</p>
+}
+@if (!string.IsNullOrEmpty(noti))
+{
+    <div class="alert">
+        @message
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(message))
+{
+    <div class="alert @(messageType == "success" ? "alert-success" : "alert-danger")">
+        @message
+    </div>
+}
+
+<form asp-controller="Personal" asp-action="UpdateLearner" method="post">
+    <div class="form-group">
+        <label for="firstName">firstName:</label>
+        <input type="text" class="form-control" id="firstName" name="firstName" />
+    </div>
+    <div class="form-group">
+        <label for="LastName">LastName:</label>
+        <input type="text" class="form-control" id="LastName" name="LastName" />
+    </div>
+    <div class="form-group">
+        <label for="country">country:</label>
+        <input type="text" class="form-control" id="country" name="country" />
+    </div>
+    <div class="form-group">
+        <label for="cultural_background">cultural_background:</label>
+        <input type="text" class="form-control" id="cultural_background" name="cultural_background" />
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>
+
+<form asp-controller="Personal" asp-action="Create" method="post">
+    <div class="form-group">
+        <label for="id">Profile ID:</label>
+        <input type="text" class="form-control" id="id" name="id" required />
+    </div>
+    <div class="form-group">
+        <label for="field1">Preferred Content Type:</label>
+        <input type="text" class="form-control" id="field1" name="field1" required />
+    </div>
+    <div class="form-group">
+        <label for="field2">Personality Type:</label>
+        <input type="text" class="form-control" id="field2" name="field2" required />
+    </div>
+    <div class="form-group">
+        <label for="field3">Emotional State:</label>
+        <input type="text" class="form-control" id="field3" name="field3" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>
+
+<form asp-controller="Personal" asp-action="Delete" method="post">
+    <div class="form-group">
+        <label for="deleteId">Profile ID to Delete:</label>
+        <input type="text" class="form-control" id="deleteId" name="id" required />
+    </div>
+    <button type="submit" class="btn btn-danger">Delete</button>
+</form>
+
+<form asp-controller="Personal" asp-action="Go" method="post">
+    <div class="form-group">
+        <label for="goId">Profile ID to Go:</label>
+        <input type="text" class="form-control" id="goId" name="id" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Go</button>
+</form>
+
+<form asp-controller="Personal" asp-action="DeleteAccount" method="post">
+    <button type="submit" class="btn btn-danger">Delete Account</button>
+</form>
+
+<form asp-controller="Personal" asp-action="Profile" method="post">
+    <button type="submit" class="btn btn-info">Profile</button>
+</form>
+
+<form asp-controller="Discussion" asp-action="AddPost" method="get">
+    <button type="submit" class="btn btn-warning">Add Post</button>
+</form>
+
+<a asp-controller="LearnersPaths" asp-action="AllPaths" class="btn btn-primary">Learner paths</a>
+
+
+<form asp-controller="LakshyLearner" asp-action="LearnerLaksh" method="get">
+    <button type="submit" class="btn btn-secondary">Courses</button>
+</form>
+<form asp-controller="Personal" asp-action="AssessmentAnalysis" method="get">
+    <button type="submit" class="btn btn-secondary">View Assessment Analysis</button>
+</form>
+<form asp-controller="Personal" asp-action="ViewScore" method="post">
+    <div class="form-group">
+        <label for="ViewScoreAssessmentID">Assessment ID:</label>
+        <input type="text" class="form-control" id="ViewScoreAssessmentID" name="AssessmentID" required />
+    </div>
+    <button type="submit" class="btn btn-info">View Score</button>
+</form>
+<a asp-action="AvailableQuests" asp-controller="Quests" class="btn btn-success">View Quests</a>
+
+<a asp-controller="Personal" asp-action="Progress" class="btn btn-primary">View your progress</a>
+
+<a asp-controller="HighestGradeLearner" asp-action="HighestGrades" class="btn btn-primary">View Highest Grades</a>
+
+<a asp-controller="personal" asp-action="LeaderboardFilter" class="btn btn-primary">filter your leaderboard</a>
+
+<a asp-controller="Personal" asp-action="Review" class="btn btn-primary">Review My Assessments</a>
+<a asp-controller="Personal" asp-action="CheckUpcomingGoals" class="btn btn-primary">check for Upcoming Goals</a>
+<a asp-controller="personal" asp-action="ViewNotifications" class="btn btn-primary">View Notifications</a>
+
+<a asp-controller="Personal" asp-action="SelectActivityForShare" class="btn btn-info">share Feedback</a>
+
+<form asp-controller="Leaderboards" asp-action="LeaderboardRank" method="post">
+    <div class="form-group">
+        <label for="LeaderboardID">LeaderBoard ID</label>
+        <input type="number" class="form-control" id="LeaderboardID" name="leaderboardID" required />
+    </div>
+    <button type="submit" class="btn btn-primary">get Rank</button>
+</form>
